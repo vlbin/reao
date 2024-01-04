@@ -5,4 +5,4 @@ import { AppElement } from "./elements";
 const root = new AppElement("div", {});
 root.setChildren(App());
 
-document.querySelector("#app")!.innerHTML = root.renderRoot();
+document.querySelector("#app")!.appendChild(root.renderRoot());

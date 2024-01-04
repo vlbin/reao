@@ -28,6 +28,14 @@ const VStackClassMap = {
   end: "items-end",
 };
 
+class StackClass extends Element {
+  gap(value: "none" | "sm" | "md" | "lg") {
+    const gapMap = { none: "gap-0", sm: "gap-2", md: "gap-4", lg: "gap-8" };
+    this.props!.class = [this.props!.class, gapMap[value]].join(" ");
+    return this;
+  }
+}
+
 export function Stack(
   classMap: Record<string, string>,
   ...[propOrChild, ..._children]: [
@@ -41,7 +49,7 @@ export function Stack(
     ? _children
     : [propOrChild, ..._children];
 
-  return new Element(
+  return new StackClass(
     "div",
     { class: `${classMap.base} ${classMap[alignment]}` },
     ...children
